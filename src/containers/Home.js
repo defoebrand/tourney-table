@@ -8,6 +8,89 @@ import addTeamName from '../helpers/teamAddition';
 const Home = () => {
   const [teamName, setTeamName] = useState('');
 
+  const team1 = [{
+    Place: 1,
+    Team: 'Greece',
+    Played: 2,
+    Win: 2,
+    Draw: 0,
+    Loss: 0,
+    Points: 6,
+  }, {
+    Place: 2,
+    Team: 'Argentina',
+    Played: 2,
+    Win: 1,
+    Draw: 0,
+    Loss: 1,
+    Points: 3,
+  }, {
+    Place: 3,
+    Team: 'Germany',
+    Played: 1,
+    Win: 0,
+    Draw: 1,
+    Loss: 0,
+    Points: 1,
+  }, {
+    Place: 4,
+    Team: 'Italy',
+    Played: 3,
+    Win: 0,
+    Draw: 1,
+    Loss: 2,
+    Points: 1,
+  },
+  ];
+
+  const displayHeaders = () => {
+    const headers = ['Place', 'Team', 'Played', 'Win', 'Draw', 'Loss', 'Points'];
+    return (
+      <tr>
+        {headers.map((header) => (
+          <th key={header}>{header}</th>
+        ))}
+      </tr>
+    );
+  };
+
+  const displayTeams = () => (
+    team1.map((teams) => (
+      <tr key={team1.indexOf(teams)}>
+        {Object.entries(teams).map((data) => (
+          <th key={`${data[0]}${data[1]}`}>{data[1]}</th>
+        ))}
+      </tr>
+    )));
+
+  const displayScores = () => (
+    <>
+      <span className="team1">Greece</span>
+      <span className="score">2:0</span>
+      <span className="team2">Italy</span>
+
+      <span className="team1">Argentina</span>
+      <span className="score">2:3</span>
+      <span className="team2">Greece</span>
+
+      <span className="team1">Argentina</span>
+      <span className="score">2:0</span>
+      <span className="team2">Italy</span>
+
+      <span className="team1">Italy</span>
+      <span className="score">0:0</span>
+      <span className="team2">Germany</span>
+
+      <span className="team1">Greece</span>
+      <span className="score">0:0</span>
+      <span className="team2">Germany</span>
+
+      <span className="team1">Germany</span>
+      <span className="score">0:0</span>
+      <span className="team2">Argentina</span>
+    </>
+  );
+
   const addTeamToDisplay = () => {
     addTeamName(teamName);
     setTeamName('');
@@ -34,80 +117,15 @@ const Home = () => {
         </InputGroup>
         <Table striped bordered hover size="sm" className="tourney-table">
           <thead>
-            <tr>
-              <th>Place</th>
-              <th>Team</th>
-              <th>Played</th>
-              <th>Win</th>
-              <th>Draw</th>
-              <th>Loss</th>
-              <th>Points</th>
-            </tr>
+            {displayHeaders()}
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <th>Greece</th>
-              <th>2</th>
-              <th>2</th>
-              <th>0</th>
-              <th>0</th>
-              <th>6</th>
-            </tr>
-            <tr>
-              <th>2</th>
-              <th>Argentina</th>
-              <th>2</th>
-              <th>1</th>
-              <th>0</th>
-              <th>1</th>
-              <th>3</th>
-            </tr>
-            <tr>
-              <th>3</th>
-              <th>Germany</th>
-              <th>1</th>
-              <th>0</th>
-              <th>1</th>
-              <th>0</th>
-              <th>1</th>
-            </tr>
-            <tr>
-              <th>4</th>
-              <th>Italy</th>
-              <th>3</th>
-              <th>0</th>
-              <th>1</th>
-              <th>2</th>
-              <th>1</th>
-            </tr>
+            {displayTeams()}
           </tbody>
         </Table>
       </div>
       <div className="score-sheet">
-        <span className="team1">Greece</span>
-        <span className="score">2:0</span>
-        <span className="team2">Italy</span>
-
-        <span className="team1">Argentina</span>
-        <span className="score">2:3</span>
-        <span className="team2">Greece</span>
-
-        <span className="team1">Argentina</span>
-        <span className="score">2:0</span>
-        <span className="team2">Italy</span>
-
-        <span className="team1">Italy</span>
-        <span className="score">0:0</span>
-        <span className="team2">Germany</span>
-
-        <span className="team1">Greece</span>
-        <span className="score">0:0</span>
-        <span className="team2">Germany</span>
-
-        <span className="team1">Germany</span>
-        <span className="score">0:0</span>
-        <span className="team2">Argentina</span>
+        {displayScores()}
       </div>
     </div>
   );
