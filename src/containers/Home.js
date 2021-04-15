@@ -1,23 +1,59 @@
-const App = () => (
-  <div className="App">
-    <header className="App-header">
-      <p>
-        Edit
-        {' '}
-        <code>src/App.js</code>
-        {' '}
-        and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
+import Table from 'react-bootstrap/Table';
+
+const Home = () => (
+  <div className="home">
+    <Table striped bordered hover size="sm" className="tourney-table">
+      <thead>
+        <tr>
+          <th>Place</th>
+          <th>Team</th>
+          <th>Played</th>
+          <th>Win</th>
+          <th>Draw</th>
+          <th>Loss</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>1</th>
+          <th>Greece</th>
+          <th>2</th>
+          <th>2</th>
+          <th>0</th>
+          <th>0</th>
+          <th>6</th>
+        </tr>
+        <tr>
+          <th>2</th>
+          <th>Argentina</th>
+          <th>2</th>
+          <th>1</th>
+          <th>0</th>
+          <th>1</th>
+          <th>3</th>
+        </tr>
+        <tr>
+          <th>3</th>
+          <th>Germany</th>
+          <th>1</th>
+          <th>0</th>
+          <th>1</th>
+          <th>0</th>
+          <th>1</th>
+        </tr>
+        <tr>
+          <th>4</th>
+          <th>Italy</th>
+          <th>3</th>
+          <th>0</th>
+          <th>1</th>
+          <th>2</th>
+          <th>1</th>
+        </tr>
+      </tbody>
+    </Table>
   </div>
 );
 
-export default App;
+export default Home;
