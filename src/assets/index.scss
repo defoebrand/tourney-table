@@ -3,9 +3,6 @@
 
 body {
   box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0;
   font-family:
     -apple-system,
@@ -21,4 +18,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
