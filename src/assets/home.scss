@@ -33,7 +33,7 @@
 
   .score-sheet {
     display: grid;
-    grid-template-columns: 100px 75px 100px;
+    grid-template-columns: 100px 125px 100px;
     margin-top: 30px;
     padding: 15px;
 
@@ -47,6 +47,16 @@
 
     .score {
       margin: 0 15px;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+
+    .score-input {
+      input {
+        text-align: center;
+        width: 45px;
+        padding: 0;
+      }
     }
 
     .team2 {

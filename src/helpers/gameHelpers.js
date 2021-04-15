@@ -25,4 +25,15 @@ const addToStorage = (teamName) => {
   }
 };
 
-export default addToStorage;
+const createTournament = (teamList) => {
+  const games = [];
+  const entries = Object.entries(teamList);
+  for (let i = 0; i < entries.length; i += 1) {
+    entries.slice(i + 1, entries.length).forEach((team) => (
+      games.push({ [`${entries[i][1].Team}`]: '', [`${team[1].Team}`]: '' })
+    ));
+  }
+  return games;
+};
+
+export { addToStorage, createTournament };

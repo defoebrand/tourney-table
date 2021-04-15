@@ -1,12 +1,11 @@
-export const SUBMIT = 'SUBMIT';
-export const GET = 'GET';
-
-export const addTeam = (input) => ({
-  type: SUBMIT,
-  input,
-});
+export const GETTEAMS = 'GETTEAMS';
+export const GETGAMES = 'GETGAMES';
 
 export const getTeams = (input) => ({
-  type: GET,
+  type: GETTEAMS,
+  input,
+});
+export const getGames = (input) => ({
+  type: GETGAMES,
   input,
 });
