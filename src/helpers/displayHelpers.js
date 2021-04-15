@@ -30,11 +30,11 @@ const addScoreToGame = (currGame, value, side) => {
   // } else {
   //   console.log('no match!');
   // }
-  console.log(currGame);
+  // console.log(currGame);
   const thisGame = games.find((elem) => elem.id === currGame);
   thisGame[side] = value;
-  console.log(thisGame);
-  console.log(games);
+  // console.log(thisGame);
+  // console.log(games);
 
   localStorage.games = JSON.stringify(games);
 

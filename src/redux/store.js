@@ -19,7 +19,6 @@ if (localStorage.teamList === undefined) {
 }
 
 if (localStorage.games === undefined) {
-  console.log('in if statement');
   localStorage.games = JSON.stringify(createTournament(JSON.parse(localStorage.teamList)));
 }
 
@@ -35,7 +34,6 @@ const getTeamsReducer = (state = '', action) => {
 };
 
 const getGamesReducer = (state = '', action) => {
-  console.log('in reducer');
   switch (action.type) {
     case GETGAMES:
       return {
