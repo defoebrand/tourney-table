@@ -1,4 +1,4 @@
-const addTeamName = (name) => {
+const createEntry = (name) => {
   const table = document.querySelector('table');
   const newRow = document.createElement('tr');
   const newRank = document.createElement('th');
@@ -19,4 +19,4 @@ const addTeamName = (name) => {
   table.appendChild(newRow);
 };
 
-export default addTeamName;
+export default createEntry;

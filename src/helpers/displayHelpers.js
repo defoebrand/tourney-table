@@ -1,50 +1,47 @@
-const teamList = [{
-  Place: 1,
-  Team: 'Greece',
-  Played: 2,
-  Win: 2,
-  Draw: 0,
-  Loss: 0,
-  Points: 6,
-}, {
-  Place: 2,
-  Team: 'Argentina',
-  Played: 2,
-  Win: 1,
-  Draw: 0,
-  Loss: 1,
-  Points: 3,
-}, {
-  Place: 3,
-  Team: 'Germany',
-  Played: 1,
-  Win: 0,
-  Draw: 1,
-  Loss: 0,
-  Points: 1,
-}, {
-  Place: 4,
-  Team: 'Italy',
-  Played: 3,
-  Win: 0,
-  Draw: 1,
-  Loss: 2,
-  Points: 1,
-},
-];
+// const teamList = [{
+//   Place: 1,
+//   Team: 'Greece',
+//   Played: 2,
+//   Win: 2,
+//   Draw: 0,
+//   Loss: 0,
+//   Points: 6,
+// }, {
+//   Place: 2,
+//   Team: 'Argentina',
+//   Played: 2,
+//   Win: 1,
+//   Draw: 0,
+//   Loss: 1,
+//   Points: 3,
+// }, {
+//   Place: 3,
+//   Team: 'Germany',
+//   Played: 1,
+//   Win: 0,
+//   Draw: 1,
+//   Loss: 0,
+//   Points: 1,
+// }, {
+//   Place: 4,
+//   Team: 'Italy',
+//   Played: 3,
+//   Win: 0,
+//   Draw: 1,
+//   Loss: 2,
+//   Points: 1,
+// },
+// ];
 
-const displayHeaders = () => {
-  const headers = ['Place', 'Team', 'Played', 'Win', 'Draw', 'Loss', 'Points'];
-  return (
-    <tr>
-      {headers.map((header) => (
-        <th key={header}>{header}</th>
-      ))}
-    </tr>
-  );
-};
+const displayHeaders = (headers) => (
+  <tr>
+    {headers.map((header) => (
+      <th key={header}>{header}</th>
+    ))}
+  </tr>
+);
 
-const displayTeams = () => (
+const displayTeams = (teamList) => (
   teamList.map((teams) => (
     <tr key={teamList.indexOf(teams)}>
       {Object.entries(teams).map((data) => (

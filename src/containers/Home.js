@@ -1,16 +1,26 @@
-import { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+
 import Table from 'react-bootstrap/Table';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
-import addTeamName from '../helpers/teamAddition';
+import { addTeam, getTeams } from '../redux/actions';
+
+import createEntry from '../helpers/teamAddition';
 import { displayHeaders, displayTeams, displayScores } from '../helpers/displayHelpers';
 
-const Home = () => {
+const Home = ({ team, dispatch, teamList }) => {
+  useEffect(() => {
+    dispatch(getTeams());
+    console.log(team);
+  }, []);
   const [teamName, setTeamName] = useState('');
 
   const addTeamToDisplay = () => {
-    addTeamName(teamName);
+    dispatch(addTeam(teamName));
+    createEntry(teamName);
     setTeamName('');
   };
 
@@ -35,10 +45,10 @@ const Home = () => {
         </InputGroup>
         <Table striped bordered hover size="sm" className="tourney-table">
           <thead>
-            {displayHeaders()}
+            {displayHeaders(Object.keys(teamList[0]))}
           </thead>
           <tbody>
-            {displayTeams()}
+            {displayTeams(teamList)}
           </tbody>
         </Table>
       </div>
@@ -49,4 +59,28 @@ const Home = () => {
   );
 };
 
-export default Home;
+Home.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  team: PropTypes.string,
+  teamList: PropTypes.arrayOf(
+    PropTypes.shape(),
+  ),
+};
+
+Home.defaultProps = {
+  team: '',
+  teamList: [{
+    Place: '',
+    Team: '',
+    Played: '',
+    Win: '',
+    Draw: '',
+    Loss: '',
+    Points: '',
+  }],
+};
+
+export default connect((state) => ({
+  team: state.addTeamReducer.team,
+  teamList: state.getTeamsReducer.teams,
+}))(Home);
