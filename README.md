@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Tournament Table
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> This project is a coding challenge set forth by tgLab. The task is to create a sports tournament resulting tool with a score table. It has been implemented using React and is deployed on Netlify.
 
-## Available Scripts
+![screenshot](public/screenshot.png)
 
-In the project directory, you can run:
+## Project Description
+The system should be able to add as many teams as needed, initially starting with none. Upon creation, new teams should be added at the bottom of the table and automatically paired with other teams (all teams should play one game with every other team). Teams get 3 points for a win, 1 point for a draw, and 0 points for a loss. The table should be ordered according to total points.
 
-### `npm start`
+### Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+-   Simple to use team creation
+-   Easy to read tournament ranking table
+-   Clear display of individual game outcomes
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Built With
 
-### `npm test`
+-   Ubuntu
+-   Atom
+-   HTML / SCSS / JavaScript / React
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Live Demo
 
-### `npm run build`
+Click the [Live Link](https://github.com/defoebrand/tourney-table.git) to visit this site now!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started Locally
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
+To get this project up and running locally, you must have node and npm installed on your computer.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**To get this project set up on your local machine, follow these simple steps:**
 
-### `npm run eject`
+**Step 1**<br>
+Navigate to the local folder where you want the repository to be cloned and run
+`git clone https://github.com/defoebrand/tourney-table.git`.<br>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Step 2**<br>
+Next, run `cd tourney-table`.<br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Step 3**<br>
+Next, run `npm install` to ensure all necessary dependencies are available.<br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Step 4**<br>
+Run `npm start` to begin the server.<br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Step 5**<br>
+Navigate to `http://localhost:3000/` in a browser of your choice to see the application running.<br>
 
-## Learn More
+### Testing
+This project uses React Testing Library and Jest-Dom for testing.
+> To run tests open a terminal inside the project's root directory and enter `npm test`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Author
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+👤 **Brandon Defoe**
 
-### Code Splitting
+-   Github: [@defoebrand](https://github.com/defoebrand)
+-   LinkedIn: [@defoebrand](https://www.linkedin.com/in/defoebrand/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Show your support
 
-### Analyzing the Bundle Size
+Give a ⭐️ if you like this project!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Acknowledgments
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   tgLab
