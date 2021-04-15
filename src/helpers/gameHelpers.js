@@ -1,4 +1,34 @@
-const addToStorage = (teamName) => {
+const createTournament = (teamList) => {
+  const games = [];
+  const entries = Object.entries(teamList);
+  for (let i = 0; i < entries.length; i += 1) {
+    entries.slice(i + 1, entries.length).forEach((team) => (
+      games.push({ id: games.length, [`${entries[i][1].Team}`]: '', [`${team[1].Team}`]: '' })
+    ));
+  }
+  return games;
+};
+
+const addGameToStorage = (teamList) => {
+  // const games = JSON.parse(localStorage.games);
+  //
+  //
+  // if (games.length === 0) {
+  //   console.log('if');
+  //   console.log(teamList);
+
+  localStorage.games = JSON.stringify(createTournament(teamList));
+  // } else {
+  //   console.log('else');
+  //   console.log(JSON.parse(localStorage.games));
+  //   const toStore = [...games, {
+  //
+  //   }];
+  //   localStorage.teamList = JSON.stringify(toStore);
+  // }
+};
+
+const addTeamToStorage = (teamName) => {
   const teams = JSON.parse(localStorage.teamList);
 
   if (teams[0].Team === '') {
@@ -23,17 +53,7 @@ const addToStorage = (teamName) => {
     }];
     localStorage.teamList = JSON.stringify(toStore);
   }
+  addGameToStorage(JSON.parse(localStorage.teamList));
 };
 
-const createTournament = (teamList) => {
-  const games = [];
-  const entries = Object.entries(teamList);
-  for (let i = 0; i < entries.length; i += 1) {
-    entries.slice(i + 1, entries.length).forEach((team) => (
-      games.push({ [`${entries[i][1].Team}`]: '', [`${team[1].Team}`]: '' })
-    ));
-  }
-  return games;
-};
-
-export { addToStorage, createTournament };
+export { addTeamToStorage, createTournament };

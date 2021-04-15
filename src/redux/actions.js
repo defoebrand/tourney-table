@@ -5,6 +5,7 @@ export const getTeams = (input) => ({
   type: GETTEAMS,
   input,
 });
+
 export const getGames = (input) => ({
   type: GETGAMES,
   input,

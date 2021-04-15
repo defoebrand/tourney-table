@@ -8,7 +8,7 @@ import FormControl from 'react-bootstrap/FormControl';
 
 import { getTeams, getGames } from '../redux/actions';
 
-import { addToStorage } from '../helpers/gameHelpers';
+import { addTeamToStorage } from '../helpers/gameHelpers';
 import { displayHeaders, displayTeams, displayScores } from '../helpers/displayHelpers';
 
 const Home = ({ dispatch, teamList, games }) => {
@@ -20,7 +20,7 @@ const Home = ({ dispatch, teamList, games }) => {
   }, []);
 
   const addTeamToDisplay = () => {
-    addToStorage(teamName);
+    addTeamToStorage(teamName);
     setTeamName('');
     dispatch(getTeams());
     dispatch(getGames());
@@ -31,7 +31,7 @@ const Home = ({ dispatch, teamList, games }) => {
   };
 
   return (
-    <div className="home flex-center">
+    <div className="home">
       <div>
         <InputGroup className="mb-3">
           <FormControl
@@ -54,9 +54,12 @@ const Home = ({ dispatch, teamList, games }) => {
           </tbody>
         </Table>
       </div>
-      <div className="score-sheet">
-        {displayScores(games)}
-      </div>
+      <section>
+        <p>Please input a score and press enter</p>
+        <div className="score-sheet">
+          {displayScores(games, dispatch, getGames)}
+        </div>
+      </section>
     </div>
   );
 };

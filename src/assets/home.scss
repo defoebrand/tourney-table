@@ -1,4 +1,7 @@
 .home {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   margin-top: 10vh;
   padding: 15px;
   text-align: center;
@@ -34,7 +37,6 @@
   .score-sheet {
     display: grid;
     grid-template-columns: 100px 125px 100px;
-    margin-top: 30px;
     padding: 15px;
 
     span {
@@ -43,6 +45,7 @@
 
     .team1 {
       text-align: right;
+      line-height: 30px;
     }
 
     .score {
@@ -61,6 +64,7 @@
 
     .team2 {
       text-align: left;
+      line-height: 30px;
     }
   }
 }
