@@ -2,11 +2,30 @@
   margin-top: 15vh;
   text-align: center;
 
+  .input-group {
+    width: 50%;
+
+    .form-control {
+      border: 2px solid gray;
+      border-radius: 0.25rem !important;
+    }
+
+    .input-group-append {
+      margin-left: 15px;
+
+      .input-group-text {
+        border: 1px solid gray;
+        border-radius: 0.25rem;
+        cursor: pointer;
+      }
+    }
+  }
+
   table {
     border: 2.5px solid blue;
 
     th {
-      padding: 15px calc(5px + 2.5vw);
+      padding: 10px calc(2.5px + 2.5vw);
     }
   }
 }

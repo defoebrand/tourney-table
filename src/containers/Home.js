@@ -1,7 +1,19 @@
 import Table from 'react-bootstrap/Table';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 
 const Home = () => (
   <div className="home">
+    <InputGroup className="mb-3">
+      <FormControl
+        placeholder="New Team"
+        aria-label="New Team"
+        aria-describedby="team-input"
+      />
+      <InputGroup.Append>
+        <InputGroup.Text id="add-btn">Add Team</InputGroup.Text>
+      </InputGroup.Append>
+    </InputGroup>
     <Table striped bordered hover size="sm" className="tourney-table">
       <thead>
         <tr>
