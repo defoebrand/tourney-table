@@ -1,24 +1,3 @@
-const createEntry = (name) => {
-  const table = document.querySelector('table');
-  const newRow = document.createElement('tr');
-  const newRank = document.createElement('th');
-  const newTeam = document.createElement('th');
-  newTeam.textContent = name;
-  const newPlayed = document.createElement('th');
-  const newWin = document.createElement('th');
-  const newDraw = document.createElement('th');
-  const newLoss = document.createElement('th');
-  const newPoints = document.createElement('th');
-  newRow.appendChild(newRank);
-  newRow.appendChild(newTeam);
-  newRow.appendChild(newPlayed);
-  newRow.appendChild(newWin);
-  newRow.appendChild(newDraw);
-  newRow.appendChild(newLoss);
-  newRow.appendChild(newPoints);
-  table.appendChild(newRow);
-};
-
 const addToStorage = (teamName) => {
   const teams = JSON.parse(localStorage.teamList);
 
@@ -33,8 +12,7 @@ const addToStorage = (teamName) => {
       Points: 0,
     }]);
   } else {
-    const prevList = JSON.parse(localStorage.teamList);
-    const toStore = [...prevList, {
+    const toStore = [...teams, {
       Place: teams.length + 1,
       Team: teamName,
       Played: 0,
@@ -47,4 +25,4 @@ const addToStorage = (teamName) => {
   }
 };
 
-export { createEntry, addToStorage };
+export default addToStorage;

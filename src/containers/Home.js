@@ -8,7 +8,7 @@ import FormControl from 'react-bootstrap/FormControl';
 
 import { getTeams } from '../redux/actions';
 
-import { addToStorage } from '../helpers/teamAddition';
+import addToStorage from '../helpers/teamAddition';
 import { displayHeaders, displayTeams, displayScores } from '../helpers/displayHelpers';
 
 const Home = ({ dispatch, teamList }) => {
