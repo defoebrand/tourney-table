@@ -12,10 +12,11 @@ import { addToStorage } from '../helpers/teamAddition';
 import { displayHeaders, displayTeams, displayScores } from '../helpers/displayHelpers';
 
 const Home = ({ dispatch, teamList }) => {
+  const [teamName, setTeamName] = useState('');
+
   useEffect(() => {
     dispatch(getTeams());
   }, []);
-  const [teamName, setTeamName] = useState('');
 
   const addTeamToDisplay = () => {
     addToStorage(teamName);
@@ -48,7 +49,6 @@ const Home = ({ dispatch, teamList }) => {
           </thead>
           <tbody>
             {displayTeams(teamList)}
-            {console.log(teamList)}
           </tbody>
         </Table>
       </div>

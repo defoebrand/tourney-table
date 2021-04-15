@@ -32,6 +32,18 @@ const addToStorage = (teamName) => {
       Loss: 0,
       Points: 0,
     }]);
+  } else {
+    const prevList = JSON.parse(localStorage.teamList);
+    const toStore = [...prevList, {
+      Place: teams.length + 1,
+      Team: teamName,
+      Played: 0,
+      Win: 0,
+      Draw: 0,
+      Loss: 0,
+      Points: 0,
+    }];
+    localStorage.teamList = JSON.stringify(toStore);
   }
 };
 
