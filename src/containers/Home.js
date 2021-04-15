@@ -3,35 +3,20 @@ import Table from 'react-bootstrap/Table';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
+import addTeamName from '../helpers/teamAddition';
+
 const Home = () => {
   const [teamName, setTeamName] = useState('');
-  const addTeamName = (name) => {
-    const table = document.querySelector('table');
-    const newRow = document.createElement('tr');
-    const newRank = document.createElement('th');
-    const newTeam = document.createElement('th');
-    newTeam.textContent = name;
-    const newPlayed = document.createElement('th');
-    const newWin = document.createElement('th');
-    const newDraw = document.createElement('th');
-    const newLoss = document.createElement('th');
-    const newPoints = document.createElement('th');
-    newRow.appendChild(newRank);
-    newRow.appendChild(newTeam);
-    newRow.appendChild(newPlayed);
-    newRow.appendChild(newWin);
-    newRow.appendChild(newDraw);
-    newRow.appendChild(newLoss);
-    newRow.appendChild(newPoints);
-    table.appendChild(newRow);
-  };
+
   const addTeamToDisplay = () => {
     addTeamName(teamName);
     setTeamName('');
   };
+
   const changeTeamName = (e) => {
     setTeamName(e.target.value);
   };
+
   return (
     <div className="home flex-center">
       <div>
