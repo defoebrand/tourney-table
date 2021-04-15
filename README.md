@@ -20,8 +20,9 @@ The system should be able to add as many teams as needed, initially starting wit
 -   HTML / SCSS / JavaScript / React
 
 ## Live Demo
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f0577a9f-a3dc-4275-b448-64828bea7e82/deploy-status)](https://app.netlify.com/sites/tourney-table/deploys)
 
-Click the [Live Link](https://github.com/defoebrand/tourney-table.git) to visit this site now!
+Click the [Live Link](https://tourney-table.netlify.app/) to visit this site now!
 
 ## Getting Started Locally
 
