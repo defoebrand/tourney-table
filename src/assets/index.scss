@@ -1,6 +1,8 @@
-@import './App.scss';
+@import '~bootstrap/scss/bootstrap.scss';
+@import './home.scss';
 
 body {
+  box-sizing: border-box;
   margin: 0;
   font-family:
     -apple-system,
@@ -18,12 +20,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family:
-    source-code-pro,
-    Menlo,
-    Monaco,
-    Consolas,
-    'Courier New',
-    monospace;
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
