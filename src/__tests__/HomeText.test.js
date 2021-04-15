@@ -8,7 +8,7 @@ describe('The Home page displays ', () => {
     render(<Home />);
   });
   test('"Add Team" button', () => {
-    const screenText = screen.getByText(/Add Team/i);
+    const screenText = screen.getByText(/^Add Team/i);
     expect(screenText).toBeInTheDocument();
   });
   test('"Place" table header', () => {
