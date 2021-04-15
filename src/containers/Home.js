@@ -6,22 +6,21 @@ import Table from 'react-bootstrap/Table';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
-import { addTeam, getTeams } from '../redux/actions';
+import { getTeams } from '../redux/actions';
 
-import createEntry from '../helpers/teamAddition';
+import { addToStorage } from '../helpers/teamAddition';
 import { displayHeaders, displayTeams, displayScores } from '../helpers/displayHelpers';
 
-const Home = ({ team, dispatch, teamList }) => {
+const Home = ({ dispatch, teamList }) => {
   useEffect(() => {
     dispatch(getTeams());
-    console.log(team);
   }, []);
   const [teamName, setTeamName] = useState('');
 
   const addTeamToDisplay = () => {
-    dispatch(addTeam(teamName));
-    createEntry(teamName);
+    addToStorage(teamName);
     setTeamName('');
+    dispatch(getTeams());
   };
 
   const changeTeamName = (e) => {
@@ -49,6 +48,7 @@ const Home = ({ team, dispatch, teamList }) => {
           </thead>
           <tbody>
             {displayTeams(teamList)}
+            {console.log(teamList)}
           </tbody>
         </Table>
       </div>
@@ -61,14 +61,12 @@ const Home = ({ team, dispatch, teamList }) => {
 
 Home.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  team: PropTypes.string,
   teamList: PropTypes.arrayOf(
     PropTypes.shape(),
   ),
 };
 
 Home.defaultProps = {
-  team: '',
   teamList: [{
     Place: '',
     Team: '',
@@ -81,6 +79,5 @@ Home.defaultProps = {
 };
 
 export default connect((state) => ({
-  team: state.addTeamReducer.team,
   teamList: state.getTeamsReducer.teams,
 }))(Home);

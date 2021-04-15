@@ -19,4 +19,20 @@ const createEntry = (name) => {
   table.appendChild(newRow);
 };
 
-export default createEntry;
+const addToStorage = (teamName) => {
+  const teams = JSON.parse(localStorage.teamList);
+
+  if (teams[0].Team === '') {
+    localStorage.teamList = JSON.stringify([{
+      Place: teams.length,
+      Team: teamName,
+      Played: 0,
+      Win: 0,
+      Draw: 0,
+      Loss: 0,
+      Points: 0,
+    }]);
+  }
+};
+
+export { createEntry, addToStorage };
