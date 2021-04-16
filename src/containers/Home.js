@@ -2,16 +2,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
-import Table from 'react-bootstrap/Table';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
 import ScoreSheet from '../components/scoreSheet';
+import TeamTable from '../components/teamTable';
 
 import { getTeams, getGames } from '../redux/actions';
 
 import { addTeamToStorage } from '../helpers/gameHelpers';
-import { displayHeaders, displayTeams } from '../helpers/displayHelpers';
 
 const Home = ({ dispatch, teamList }) => {
   const [teamName, setTeamName] = useState('');
@@ -47,14 +46,7 @@ const Home = ({ dispatch, teamList }) => {
             <InputGroup.Text id="add-btn" onClick={addTeamToDisplay}>Add Team</InputGroup.Text>
           </InputGroup.Append>
         </InputGroup>
-        <Table striped bordered hover size="sm" className="tourney-table">
-          <thead>
-            {displayHeaders(Object.keys(teamList[0]))}
-          </thead>
-          <tbody>
-            {displayTeams(teamList)}
-          </tbody>
-        </Table>
+        <TeamTable teamList={teamList} />
       </div>
       <ScoreSheet />
     </div>
