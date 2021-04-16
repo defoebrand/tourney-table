@@ -39,7 +39,7 @@ const addTeamToStorage = (teamName) => {
 
   if (teams[0].Team === '') {
     localStorage.teamList = JSON.stringify([{
-      Place: teams.length,
+      Place: `Starting Position: ${teams.length}`,
       Team: teamName,
       Played: 0,
       Win: 0,
@@ -49,7 +49,7 @@ const addTeamToStorage = (teamName) => {
     }]);
   } else {
     const toStore = [...teams, {
-      Place: teams.length + 1,
+      Place: `Starting Position: ${teams.length + 1}`,
       Team: teamName,
       Played: 0,
       Win: 0,

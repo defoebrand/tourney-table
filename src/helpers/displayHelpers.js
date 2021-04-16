@@ -8,12 +8,30 @@ const displayHeaders = (headers) => (
 
 const displayTeams = (teamList) => {
   if (teamList[0].Team !== '') {
+    let position = 0;
+    let lastPlace = 0;
     return (
       teamList.sort((a, b) => b.Points - a.Points).map((teams, ind) => (
         <tr key={`${teams.Team}`}>
           {Object.entries(teams).map((data) => {
             if (data[0] === 'Place') {
-              return (<td key={data[0]}>{ind + 1}</td>);
+              if (teamList[ind].Points < teamList[position].Points) {
+                position += 1;
+                lastPlace += 1;
+                return (<td key={data[0]}>{position + 1}</td>);
+              }
+              if (teamList[ind].Points === teamList[position].Points) {
+                if (teamList[ind].Played === 0) {
+                  lastPlace += 1;
+                  const played = teamList.map((team) => team.Played);
+
+                  if (played.every((games) => games === 0)) {
+                    return (<td key={data[0]}>{lastPlace}</td>);
+                  }
+                  return (<td key={data[0]}>{lastPlace + 1}</td>);
+                }
+                return (<td key={data[0]}>{position + 1}</td>);
+              }
             }
             return (
               <td key={data[0]}>{data[1]}</td>
