@@ -3,6 +3,7 @@
 > This project is a coding challenge set forth by tgLab. The task is to create a sports tournament resulting tool with a score table. It has been implemented using React and is deployed on Netlify.
 
 ![screenshot](public/screenshot1.png)
+
 ![screenshot](public/screenshot2.png)
 
 ## Project Description
