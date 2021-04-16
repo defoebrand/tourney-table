@@ -62,4 +62,44 @@ const addTeamToStorage = (teamName) => {
   addGameToStorage(JSON.parse(localStorage.teamList));
 };
 
-export { addTeamToStorage, createTournament };
+const addScoreToGame = (currGame, value, side) => {
+  const games = JSON.parse(localStorage.games);
+
+  const thisGame = games.find((elem) => elem.id === currGame);
+  thisGame[side] = value;
+
+  localStorage.games = JSON.stringify(games);
+
+  if (Object.values(thisGame)[1] !== '' && Object.values(thisGame)[2] !== '') {
+    const winner = Object.keys(games[currGame]).splice(1, 2)
+      .reduce((a, b) => (games[currGame][a] > games[currGame][b] ? a : b));
+    const loser = Object.keys(games[currGame]).splice(1, 2)
+      .reduce((a, b) => (games[currGame][a] < games[currGame][b] ? a : b));
+
+    const teamList = JSON.parse(localStorage.teamList);
+    if (winner === loser) {
+      let otherTeam = Object.keys(games[currGame]);
+
+      otherTeam = otherTeam.filter((n) => !['id', winner].includes(n));
+      const firstTeam = teamList.find((team) => team.Team === winner);
+      const secondTeam = teamList.find((team) => team.Team === otherTeam[0]);
+      firstTeam.Played += 1;
+      firstTeam.Points += 1;
+      firstTeam.Draw += 1;
+      secondTeam.Played += 1;
+      secondTeam.Points += 1;
+      secondTeam.Draw += 1;
+    } else {
+      const winningTeam = teamList.find((team) => team.Team === winner);
+      winningTeam.Played += 1;
+      winningTeam.Win += 1;
+      winningTeam.Points += 3;
+      const losingTeam = teamList.find((team) => team.Team === loser);
+      losingTeam.Played += 1;
+      losingTeam.Loss += 1;
+    }
+    localStorage.teamList = JSON.stringify(teamList);
+  }
+};
+
+export { addTeamToStorage, createTournament, addScoreToGame };

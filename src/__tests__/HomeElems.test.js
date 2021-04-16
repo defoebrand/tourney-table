@@ -1,16 +1,16 @@
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Home from '../containers/Home';
+import Home from '../pages/Home';
 
 describe('The Home page has ', () => {
   let renderedComponent;
   beforeEach(() => {
     renderedComponent = render(<Home />);
   });
-  test('a div with class "home"', () => {
+  test('a main elem with class "home"', () => {
     const { container } = renderedComponent;
-    const appElement = container.querySelector('div');
+    const appElement = container.querySelector('main');
     expect(appElement).toHaveClass('home');
   });
   test('an element with class "score-sheet"', () => {
