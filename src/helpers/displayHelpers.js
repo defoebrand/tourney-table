@@ -8,12 +8,35 @@ const displayHeaders = (headers) => (
 
 const displayTeams = (teamList) => {
   if (teamList[0].Team !== '') {
+    let position = 0;
+    let lastPlace = 0;
     return (
-      teamList.map((teams) => (
-        <tr key={teamList.indexOf(teams)}>
-          {Object.entries(teams).map((data) => (
-            <th key={data[0]}>{data[1]}</th>
-          ))}
+      teamList.sort((a, b) => b.Points - a.Points).map((teams, ind) => (
+        <tr key={`${teams.Team}`}>
+          {Object.entries(teams).map((data) => {
+            if (data[0] === 'Place') {
+              if (teamList[ind].Points < teamList[position].Points) {
+                position += 1;
+                lastPlace += 1;
+                return (<td key={data[0]}>{position + 1}</td>);
+              }
+              if (teamList[ind].Points === teamList[position].Points) {
+                if (teamList[ind].Played === 0) {
+                  lastPlace += 1;
+                  const played = teamList.map((team) => team.Played);
+
+                  if (played.every((games) => games === 0)) {
+                    return (<td key={data[0]}>{lastPlace}</td>);
+                  }
+                  return (<td key={data[0]}>{lastPlace + 1}</td>);
+                }
+                return (<td key={data[0]}>{position + 1}</td>);
+              }
+            }
+            return (
+              <td key={data[0]}>{data[1]}</td>
+            );
+          })}
         </tr>
       ))
     );
@@ -21,32 +44,79 @@ const displayTeams = (teamList) => {
   return <tr />;
 };
 
-const displayScores = () => (
-  <>
-    <span className="team1">Greece</span>
-    <span className="score">2:0</span>
-    <span className="team2">Italy</span>
+const addScoreToGame = (currGame, value, side) => {
+  const games = JSON.parse(localStorage.games);
 
-    <span className="team1">Argentina</span>
-    <span className="score">2:3</span>
-    <span className="team2">Greece</span>
+  const thisGame = games.find((elem) => elem.id === currGame);
+  thisGame[side] = value;
 
-    <span className="team1">Argentina</span>
-    <span className="score">2:0</span>
-    <span className="team2">Italy</span>
+  localStorage.games = JSON.stringify(games);
 
-    <span className="team1">Italy</span>
-    <span className="score">0:0</span>
-    <span className="team2">Germany</span>
+  if (Object.values(thisGame)[1] !== '' && Object.values(thisGame)[2] !== '') {
+    const winner = Object.keys(games[currGame]).splice(1, 2)
+      .reduce((a, b) => (games[currGame][a] > games[currGame][b] ? a : b));
+    const loser = Object.keys(games[currGame]).splice(1, 2)
+      .reduce((a, b) => (games[currGame][a] < games[currGame][b] ? a : b));
 
-    <span className="team1">Greece</span>
-    <span className="score">0:0</span>
-    <span className="team2">Germany</span>
+    const teamList = JSON.parse(localStorage.teamList);
+    if (winner === loser) {
+      let otherTeam = Object.keys(games[currGame]);
 
-    <span className="team1">Germany</span>
-    <span className="score">0:0</span>
-    <span className="team2">Argentina</span>
-  </>
-);
+      otherTeam = otherTeam.filter((n) => !['id', winner].includes(n));
+      const firstTeam = teamList.find((team) => team.Team === winner);
+      const secondTeam = teamList.find((team) => team.Team === otherTeam[0]);
+      firstTeam.Played += 1;
+      firstTeam.Points += 1;
+      firstTeam.Draw += 1;
+      secondTeam.Played += 1;
+      secondTeam.Points += 1;
+      secondTeam.Draw += 1;
+    } else {
+      const winningTeam = teamList.find((team) => team.Team === winner);
+      winningTeam.Played += 1;
+      winningTeam.Win += 1;
+      winningTeam.Points += 3;
+      const losingTeam = teamList.find((team) => team.Team === loser);
+      losingTeam.Played += 1;
+      losingTeam.Loss += 1;
+    }
+    localStorage.teamList = JSON.stringify(teamList);
+  }
+};
+
+const displayScores = (games, dispatch, getGames, getTeams) => {
+  const handleKeyPress = (e, game, side) => {
+    if (e.key === 'Enter' || e.keycode === 13) {
+      addScoreToGame(game, e.target.value, side);
+      dispatch(getGames());
+      dispatch(getTeams());
+    }
+  };
+  return (
+    games.map((game) => (
+      <>
+        <span className="team1">{(Object.keys(game)[1])}</span>
+        {Object.values(game)[1] === '' || Object.values(game)[2] === ''
+          ? (
+            <span className="score-input">
+              <input
+                type="text"
+                onKeyPress={(e) => handleKeyPress(e, game.id, Object.keys(game)[1])}
+                placeholder="0"
+              />
+              {' : '}
+              <input
+                type="text"
+                onKeyPress={(e) => handleKeyPress(e, game.id, Object.keys(game)[2])}
+                placeholder="0"
+              />
+            </span>
+          )
+          : <span className="score">{`${(Object.values(game)[1])} : ${(Object.values(game)[2])}`}</span>}
+        <span className="team2">{(Object.keys(game)[2])}</span>
+      </>
+    ))
+  );
+};
 
 export { displayHeaders, displayTeams, displayScores };

@@ -6,22 +6,24 @@ import Table from 'react-bootstrap/Table';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
-import { getTeams } from '../redux/actions';
+import { getTeams, getGames } from '../redux/actions';
 
-import addToStorage from '../helpers/teamAddition';
+import { addTeamToStorage } from '../helpers/gameHelpers';
 import { displayHeaders, displayTeams, displayScores } from '../helpers/displayHelpers';
 
-const Home = ({ dispatch, teamList }) => {
+const Home = ({ dispatch, teamList, games }) => {
   const [teamName, setTeamName] = useState('');
 
   useEffect(() => {
     dispatch(getTeams());
+    dispatch(getGames());
   }, []);
 
   const addTeamToDisplay = () => {
-    addToStorage(teamName);
+    addTeamToStorage(teamName);
     setTeamName('');
     dispatch(getTeams());
+    dispatch(getGames());
   };
 
   const changeTeamName = (e) => {
@@ -29,7 +31,7 @@ const Home = ({ dispatch, teamList }) => {
   };
 
   return (
-    <div className="home flex-center">
+    <div className="home">
       <div>
         <InputGroup className="mb-3">
           <FormControl
@@ -52,9 +54,12 @@ const Home = ({ dispatch, teamList }) => {
           </tbody>
         </Table>
       </div>
-      <div className="score-sheet">
-        {displayScores()}
-      </div>
+      <section>
+        <p>Please input a score and press enter</p>
+        <div className="score-sheet">
+          {displayScores(games, dispatch, getGames, getTeams)}
+        </div>
+      </section>
     </div>
   );
 };
@@ -62,6 +67,9 @@ const Home = ({ dispatch, teamList }) => {
 Home.propTypes = {
   dispatch: PropTypes.func.isRequired,
   teamList: PropTypes.arrayOf(
+    PropTypes.shape(),
+  ),
+  games: PropTypes.arrayOf(
     PropTypes.shape(),
   ),
 };
@@ -76,8 +84,10 @@ Home.defaultProps = {
     Loss: '',
     Points: '',
   }],
+  games: [],
 };
 
 export default connect((state) => ({
-  teamList: state.getTeamsReducer.teams,
+  teamList: state.getTeamsReducer.teamList,
+  games: state.getGamesReducer.games,
 }))(Home);
