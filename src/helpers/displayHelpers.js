@@ -2,9 +2,16 @@ import ScoreInput from '../components/scoreInput';
 
 const displayHeaders = (headers) => (
   <tr>
-    {headers.map((header) => (
-      <th key={header}>{header}</th>
-    ))}
+    {headers.map((header) => {
+      if (['Win', 'Draw', 'Loss'].includes(header)) {
+        return (
+          <th key={header} className="sm-drop">{header}</th>
+        );
+      }
+      return (
+        <th key={header}>{header}</th>
+      );
+    })}
   </tr>
 );
 
@@ -34,6 +41,9 @@ const displayTeams = (teamList) => {
                 }
                 return (<td key={data[0]}>{position + 1}</td>);
               }
+            }
+            if (['Win', 'Draw', 'Loss'].includes(data[0])) {
+              return (<td key={data[0]} className="sm-drop">{data[1]}</td>);
             }
             return (
               <td key={data[0]}>{data[1]}</td>

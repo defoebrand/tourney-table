@@ -79,4 +79,14 @@
       line-height: 30px;
     }
   }
+
+  @media only screen and (max-width: 500px) {
+    .input-group {
+      width: 75%;
+    }
+
+    .sm-drop {
+      display: none;
+    }
+  }
 }
