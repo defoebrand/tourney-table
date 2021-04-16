@@ -2,11 +2,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-
-import ScoreSheet from '../components/scoreSheet';
+import TeamInput from '../components/teamInput';
 import TeamTable from '../components/teamTable';
+import ScoreSheet from './scoreSheet';
 
 import { getTeams, getGames } from '../redux/actions';
 
@@ -32,24 +30,13 @@ const Home = ({ dispatch, teamList }) => {
   };
 
   return (
-    <div className="home">
-      <div>
-        <InputGroup className="mb-3">
-          <FormControl
-            placeholder="New Team"
-            aria-label="New Team"
-            aria-describedby="team-input"
-            value={teamName}
-            onChange={changeTeamName}
-          />
-          <InputGroup.Append>
-            <InputGroup.Text id="add-btn" onClick={addTeamToDisplay}>Add Team</InputGroup.Text>
-          </InputGroup.Append>
-        </InputGroup>
+    <main className="home">
+      <section>
+        <TeamInput addTeam={addTeamToDisplay} setTeam={changeTeamName} teamName={teamName} />
         <TeamTable teamList={teamList} />
-      </div>
+      </section>
       <ScoreSheet />
-    </div>
+    </main>
   );
 };
 

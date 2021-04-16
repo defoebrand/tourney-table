@@ -1,4 +1,4 @@
-import GameInput from '../components/gameInput';
+import ScoreInput from '../components/scoreInput';
 
 const displayHeaders = (headers) => (
   <tr>
@@ -55,7 +55,7 @@ const displayScores = (games, handleKeyPress) => (
         <span className="team1">{team1}</span>
 
         {team1Score === '' || team2Score === ''
-          ? <GameInput onEnter={handleKeyPress} gameID={game.id} team1={team1} team2={team2} />
+          ? <ScoreInput onEnter={handleKeyPress} gameID={game.id} team1={team1} team2={team2} />
           : <span className="score">{`${team1Score} : ${(team2Score)}`}</span>}
 
         <span className="team2">{team2}</span>
