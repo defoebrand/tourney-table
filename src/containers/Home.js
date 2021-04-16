@@ -6,12 +6,14 @@ import Table from 'react-bootstrap/Table';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
+import ScoreSheet from '../components/scoreSheet';
+
 import { getTeams, getGames } from '../redux/actions';
 
 import { addTeamToStorage } from '../helpers/gameHelpers';
-import { displayHeaders, displayTeams, displayScores } from '../helpers/displayHelpers';
+import { displayHeaders, displayTeams } from '../helpers/displayHelpers';
 
-const Home = ({ dispatch, teamList, games }) => {
+const Home = ({ dispatch, teamList }) => {
   const [teamName, setTeamName] = useState('');
 
   useEffect(() => {
@@ -54,12 +56,7 @@ const Home = ({ dispatch, teamList, games }) => {
           </tbody>
         </Table>
       </div>
-      <section>
-        <p>Please input a score and press enter</p>
-        <div className="score-sheet">
-          {displayScores(games, dispatch, getGames, getTeams)}
-        </div>
-      </section>
+      <ScoreSheet />
     </div>
   );
 };
@@ -67,9 +64,6 @@ const Home = ({ dispatch, teamList, games }) => {
 Home.propTypes = {
   dispatch: PropTypes.func.isRequired,
   teamList: PropTypes.arrayOf(
-    PropTypes.shape(),
-  ),
-  games: PropTypes.arrayOf(
     PropTypes.shape(),
   ),
 };
@@ -84,10 +78,8 @@ Home.defaultProps = {
     Loss: '',
     Points: '',
   }],
-  games: [],
 };
 
 export default connect((state) => ({
   teamList: state.getTeamsReducer.teamList,
-  games: state.getGamesReducer.games,
 }))(Home);
