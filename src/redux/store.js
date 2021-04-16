@@ -2,24 +2,20 @@ import { combineReducers, createStore } from 'redux';
 
 import { GETTEAMS, GETGAMES } from './actions';
 
-import { createTournament } from '../helpers/gameHelpers';
-
-const initialTable = [{
-  Place: '',
-  Team: '',
-  Played: '',
-  Win: '',
-  Draw: '',
-  Loss: '',
-  Points: '',
-}];
-
 if (localStorage.teamList === undefined) {
-  localStorage.teamList = JSON.stringify(initialTable);
+  localStorage.teamList = JSON.stringify([{
+    Place: '',
+    Team: '',
+    Played: '',
+    Win: '',
+    Draw: '',
+    Loss: '',
+    Points: '',
+  }]);
 }
 
 if (localStorage.games === undefined) {
-  localStorage.games = JSON.stringify(createTournament(JSON.parse(localStorage.teamList)));
+  localStorage.games = JSON.stringify([]);
 }
 
 const getTeamsReducer = (state = '', action) => {
