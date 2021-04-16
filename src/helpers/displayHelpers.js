@@ -9,11 +9,16 @@ const displayHeaders = (headers) => (
 const displayTeams = (teamList) => {
   if (teamList[0].Team !== '') {
     return (
-      teamList.map((teams) => (
+      teamList.sort((a, b) => b.Points - a.Points).map((teams, ind) => (
         <tr key={`${teams.Team}`}>
-          {Object.entries(teams).map((data) => (
-            <th key={data[0]}>{data[1]}</th>
-          ))}
+          {Object.entries(teams).map((data) => {
+            if (data[0] === 'Place') {
+              return (<td key={data[0]}>{ind + 1}</td>);
+            }
+            return (
+              <td key={data[0]}>{data[1]}</td>
+            );
+          })}
         </tr>
       ))
     );
