@@ -2,16 +2,21 @@
 
 > This project is a coding challenge set forth by tgLab. The task is to create a sports tournament resulting tool with a score table. It has been implemented using React and is deployed on Netlify.
 
-![screenshot](public/screenshot.png)
+![screenshot](public/screenshot1.png)
+![screenshot](public/screenshot2.png)
 
 ## Project Description
 The system should be able to add as many teams as needed, initially starting with none. Upon creation, new teams should be added at the bottom of the table and automatically paired with other teams (all teams should play one game with every other team). Teams get 3 points for a win, 1 point for a draw, and 0 points for a loss. The table should be ordered according to total points.
 
 ### Features
 
--   Simple to use team creation
+-   Simple to use team creation, just type in a team name and press Enter or click 'Add Team'
 -   Easy to read tournament ranking table
+-   Table shifts to update team ranking
+-   Table accounts for tied positions
+-   Fully responsive table, Win / Draw / Loss columns disappear on smaller screen sizes
 -   Clear display of individual game outcomes
+-   Easy to input game scores, simply type the score into the empty box and press Enter. Once both scores have been entered, the game will be saved and the table will be updated.
 
 ## Built With
 
