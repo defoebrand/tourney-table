@@ -13,7 +13,9 @@ const createTournament = (teamList, gamesList) => {
       && Object.keys(game)[2] === Object.keys(gameData)[2]
       ));
       for (let i = 0; i < swapGame.length; i += 1) {
+        const { id } = games[swapGame[i].id];
         games[swapGame[i].id] = gameData;
+        games[swapGame[i].id].id = id;
       }
     });
   }
@@ -21,12 +23,13 @@ const createTournament = (teamList, gamesList) => {
 };
 
 const addGameToStorage = (teamList) => {
-  const games = JSON.parse(localStorage.games);
+  const currentGames = JSON.parse(localStorage.games);
 
-  if (games.length === 0) {
-    localStorage.games = JSON.stringify(createTournament(teamList));
+  if (currentGames.length === 0) {
+    const toStore = createTournament(teamList);
+    localStorage.games = JSON.stringify(toStore);
   } else {
-    const toStore = createTournament(teamList, games);
+    const toStore = createTournament(teamList, currentGames);
     localStorage.games = JSON.stringify(toStore);
   }
 };

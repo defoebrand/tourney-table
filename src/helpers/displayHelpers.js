@@ -23,29 +23,50 @@ const displayTeams = (teamList) => {
 
 const addScoreToGame = (currGame, value, side) => {
   const games = JSON.parse(localStorage.games);
-  // games.forEach((game) => {
-  // if (Object.keys(game)[0] === Object.keys(currGame)[0]
-  //  && Object.keys(game)[1] === Object.keys(currGame)[1]) {
-  //   console.log('match!');
-  // } else {
-  //   console.log('no match!');
-  // }
-  // console.log(currGame);
+
   const thisGame = games.find((elem) => elem.id === currGame);
   thisGame[side] = value;
-  // console.log(thisGame);
-  // console.log(games);
 
   localStorage.games = JSON.stringify(games);
 
-  // });
+  if (Object.values(thisGame)[1] !== '' && Object.values(thisGame)[2] !== '') {
+    const winner = Object.keys(games[currGame]).splice(1, 2)
+      .reduce((a, b) => (games[currGame][a] > games[currGame][b] ? a : b));
+    const loser = Object.keys(games[currGame]).splice(1, 2)
+      .reduce((a, b) => (games[currGame][a] < games[currGame][b] ? a : b));
+
+    const teamList = JSON.parse(localStorage.teamList);
+    if (winner === loser) {
+      let otherTeam = Object.keys(games[currGame]);
+
+      otherTeam = otherTeam.filter((n) => !['id', winner].includes(n));
+      const firstTeam = teamList.find((team) => team.Team === winner);
+      const secondTeam = teamList.find((team) => team.Team === otherTeam[0]);
+      firstTeam.Played += 1;
+      firstTeam.Points += 1;
+      firstTeam.Draw += 1;
+      secondTeam.Played += 1;
+      secondTeam.Points += 1;
+      secondTeam.Draw += 1;
+    } else {
+      const winningTeam = teamList.find((team) => team.Team === winner);
+      winningTeam.Played += 1;
+      winningTeam.Win += 1;
+      winningTeam.Points += 3;
+      const losingTeam = teamList.find((team) => team.Team === loser);
+      losingTeam.Played += 1;
+      losingTeam.Loss += 1;
+    }
+    localStorage.teamList = JSON.stringify(teamList);
+  }
 };
 
-const displayScores = (games, dispatch, getGames) => {
+const displayScores = (games, dispatch, getGames, getTeams) => {
   const handleKeyPress = (e, game, side) => {
     if (e.key === 'Enter' || e.keycode === 13) {
       addScoreToGame(game, e.target.value, side);
       dispatch(getGames());
+      dispatch(getTeams());
     }
   };
   return (

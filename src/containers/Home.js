@@ -57,7 +57,7 @@ const Home = ({ dispatch, teamList, games }) => {
       <section>
         <p>Please input a score and press enter</p>
         <div className="score-sheet">
-          {displayScores(games, dispatch, getGames)}
+          {displayScores(games, dispatch, getGames, getTeams)}
         </div>
       </section>
     </div>
