@@ -6,7 +6,7 @@ import store from './redux/store';
 
 import './assets/index.scss';
 
-import Home from './containers/Home';
+import Home from './pages/Home';
 
 ReactDOM.render(
   <React.StrictMode>

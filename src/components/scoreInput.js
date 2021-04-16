@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { addScoreToGame } from '../helpers/gameHelpers';
-
 import { getTeams, getGames } from '../redux/actions';
+import { addScoreToGame } from '../helpers/gameHelpers';
 
 const ScoreInput = ({
   gameID, dispatch, team1, team2,

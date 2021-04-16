@@ -1,3 +1,4 @@
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Table from 'react-bootstrap/Table';
@@ -33,4 +34,6 @@ TeamTable.defaultProps = {
   }],
 };
 
-export default (TeamTable);
+export default connect((state) => ({
+  teamList: state.getTeamsReducer.teamList,
+}))(TeamTable);

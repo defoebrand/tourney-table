@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Home from '../containers/Home';
+import Home from '../pages/Home';
 
 describe('The Home page has ', () => {
   let renderedComponent;

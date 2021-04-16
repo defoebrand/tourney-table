@@ -19,7 +19,7 @@ ScoreSheet.propTypes = {
 };
 
 ScoreSheet.defaultProps = {
-  games: [],
+  games: [{}],
 };
 
 export default connect((state) => ({
