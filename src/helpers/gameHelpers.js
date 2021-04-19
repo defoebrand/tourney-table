@@ -36,6 +36,10 @@ const addGameToStorage = (teamList) => {
 
 const addTeamToStorage = (teamName) => {
   const teams = JSON.parse(localStorage.teamList);
+  const roster = JSON.parse(localStorage.roster);
+  if (!roster.includes(teamName)) {
+    localStorage.roster = JSON.stringify([...roster, teamName]);
+  }
 
   if (teams[0].Team === '') {
     localStorage.teamList = JSON.stringify([{
