@@ -18,10 +18,16 @@ const TeamInput = ({ dispatch }) => {
   }, []);
 
   const addTeamToDisplay = () => {
-    addTeamToStorage(teamName);
-    setTeamName('');
-    dispatch(getTeams());
-    dispatch(getGames());
+    const inputBox = document.querySelector('.form-control');
+    if (teamName !== '') {
+      addTeamToStorage(teamName);
+      setTeamName('');
+      dispatch(getTeams());
+      dispatch(getGames());
+      inputBox.style.border = '2px solid gray';
+    } else {
+      inputBox.style.border = '3px solid red';
+    }
   };
 
   const changeTeamName = (e) => {
@@ -33,6 +39,7 @@ const TeamInput = ({ dispatch }) => {
       addTeamToDisplay();
     }
   };
+
   return (
     <InputGroup className="mb-3">
       <FormControl
