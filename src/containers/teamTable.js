@@ -5,10 +5,10 @@ import Table from 'react-bootstrap/Table';
 
 import { displayHeaders, displayTeams } from '../helpers/displayHelpers';
 
-const TeamTable = ({ teamList }) => (
+const TeamTable = ({ teamList, headers }) => (
   <Table striped bordered hover size="sm" className="tourney-table">
     <thead>
-      {displayHeaders(Object.keys(teamList[0]))}
+      {displayHeaders(headers)}
     </thead>
     <tbody>
       {displayTeams(teamList)}
@@ -19,6 +19,9 @@ const TeamTable = ({ teamList }) => (
 TeamTable.propTypes = {
   teamList: PropTypes.arrayOf(
     PropTypes.shape(),
+  ),
+  headers: PropTypes.arrayOf(
+    PropTypes.string,
   ),
 };
 
@@ -32,8 +35,10 @@ TeamTable.defaultProps = {
     Loss: '',
     Points: '',
   }],
+  headers: [],
 };
 
 export default connect((state) => ({
   teamList: state.getTeamsReducer.teamList,
+  headers: state.getHeadersReducer.headers,
 }))(TeamTable);
