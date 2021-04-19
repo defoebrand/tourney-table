@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
-import { getTeams, getGames } from '../redux/actions';
+import { getTeams, getGames, getHeaders } from '../redux/actions';
 import { addTeamToStorage } from '../helpers/gameHelpers';
 
 const TeamInput = ({ dispatch }) => {
@@ -14,6 +14,7 @@ const TeamInput = ({ dispatch }) => {
   useEffect(() => {
     dispatch(getTeams());
     dispatch(getGames());
+    dispatch(getHeaders());
   }, []);
 
   const addTeamToDisplay = () => {
