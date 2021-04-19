@@ -1,6 +1,8 @@
 import { combineReducers, createStore } from 'redux';
 
-import { GETTEAMS, GETGAMES, GETHEADERS } from './actions';
+import {
+  GETTEAMS, GETGAMES, GETHEADERS, GETROSTER,
+} from './actions';
 
 if (localStorage.teamList === undefined) {
   localStorage.teamList = JSON.stringify([{
@@ -20,6 +22,10 @@ if (localStorage.headers === undefined) {
 
 if (localStorage.games === undefined) {
   localStorage.games = JSON.stringify([]);
+}
+
+if (localStorage.roster === undefined) {
+  localStorage.roster = JSON.stringify([]);
 }
 
 const getTeamsReducer = (state = '', action) => {
@@ -44,6 +50,17 @@ const getHeadersReducer = (state = '', action) => {
   }
 };
 
+const getRosterReducer = (state = '', action) => {
+  switch (action.type) {
+    case GETROSTER:
+      return {
+        roster: JSON.parse(localStorage.roster),
+      };
+    default:
+      return state;
+  }
+};
+
 const getGamesReducer = (state = '', action) => {
   switch (action.type) {
     case GETGAMES:
@@ -59,6 +76,7 @@ export const combinedReducers = combineReducers({
   getTeamsReducer,
   getGamesReducer,
   getHeadersReducer,
+  getRosterReducer,
 });
 
 export default createStore(combinedReducers);

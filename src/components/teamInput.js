@@ -5,21 +5,24 @@ import { useState, useEffect } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
-import { getTeams, getGames, getHeaders } from '../redux/actions';
+import {
+  getTeams, getGames, getHeaders, getRoster,
+} from '../redux/actions';
 import { addTeamToStorage } from '../helpers/gameHelpers';
 
-const TeamInput = ({ dispatch }) => {
+const TeamInput = ({ dispatch, roster }) => {
   const [teamName, setTeamName] = useState('');
 
   useEffect(() => {
     dispatch(getTeams());
     dispatch(getGames());
     dispatch(getHeaders());
+    dispatch(getRoster());
   }, []);
 
   const addTeamToDisplay = () => {
     const inputBox = document.querySelector('.form-control');
-    if (teamName !== '') {
+    if (teamName !== '' && !roster.includes(teamName)) {
       addTeamToStorage(teamName);
       setTeamName('');
       dispatch(getTeams());
@@ -42,6 +45,7 @@ const TeamInput = ({ dispatch }) => {
 
   return (
     <InputGroup className="mb-3">
+      {console.log(roster)}
       <FormControl
         placeholder="New Team"
         aria-label="New Team"
@@ -59,6 +63,15 @@ const TeamInput = ({ dispatch }) => {
 
 TeamInput.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  roster: PropTypes.arrayOf(
+    PropTypes.string,
+  ),
 };
 
-export default connect(null)(TeamInput);
+TeamInput.defaultProps = {
+  roster: ['pie'],
+};
+
+export default connect((state) => ({
+  roster: state.getRosterReducer.roster,
+}))(TeamInput);
