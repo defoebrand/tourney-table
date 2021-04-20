@@ -27,6 +27,7 @@ const TeamInput = ({ dispatch, roster }) => {
       setTeamName('');
       dispatch(getTeams());
       dispatch(getGames());
+      dispatch(getRoster());
       inputBox.style.border = '2px solid gray';
     } else {
       inputBox.style.border = '3px solid red';
@@ -45,7 +46,6 @@ const TeamInput = ({ dispatch, roster }) => {
 
   return (
     <InputGroup className="mb-3">
-      {console.log(roster)}
       <FormControl
         placeholder="New Team"
         aria-label="New Team"
